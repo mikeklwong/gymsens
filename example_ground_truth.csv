@@ -1,0 +1,5 @@
+station_id,start_s,end_s,state
+rack_01,0,20,occupied
+rack_01,20,40,free
+bench_02,0,15,free
+bench_02,15,40,occupied

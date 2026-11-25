@@ -1,0 +1,9 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements-train.txt ./
+RUN pip install --no-cache-dir -r requirements-train.txt
+COPY gymsens_learning.py ./
+RUN useradd --create-home --uid 10001 gymsens && mkdir /data && chown gymsens:gymsens /data
+USER gymsens
+ENV GYMSENS_DATA_DIR=/data
+CMD ["python", "gymsens_learning.py", "watch", "--data-dir", "/data", "--interval-seconds", "21600", "--promote-if-safe"]
